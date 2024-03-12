@@ -1,0 +1,9 @@
+SELECT
+  region,
+  date,
+  'renewable energy' AS energy_type,
+  SUM(hydropower_and_pumped_storage + wind + solar) AS energy_generated_mw
+FROM
+  intel.energy_data
+GROUP BY
+  region, date

@@ -1,0 +1,24 @@
+WITH intel_energy AS (SELECT
+  *
+FROM
+  intel.power_plants AS p
+INNER JOIN
+  intel.energy_by_plant AS e
+ON
+  p.plant_code = e.plant_code)
+
+
+SELECT
+  region,
+  COUNT(*) AS n_plants,
+  SUM(energy_generated_mw) AS total_energy
+FROM
+  intel_energy
+WHERE
+  primary_technology = 'Solar Photovoltaic'
+GROUP BY
+  region
+HAVING
+  COUNT(*) >= 50
+ORDER BY
+  total_energy DESC

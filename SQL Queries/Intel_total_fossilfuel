@@ -1,0 +1,9 @@
+SELECT
+  region,
+  date,
+  'fossil fuel' AS energy_type,
+  SUM(all_petroleum_products + coal + nuclear + other_fuel_sources + natural_gas) AS energy_generated_mw
+FROM
+  intel.energy_data
+GROUP BY
+  region, date

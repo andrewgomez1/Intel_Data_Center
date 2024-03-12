@@ -1,0 +1,9 @@
+SELECT
+  region,
+  ROUND(SUM(hydropower_and_pumped_storage + solar + wind) / SUM(net_generation) *100,2) AS pct_renewable_energy
+FROM
+  intel.energy_data
+GROUP BY
+  region
+ORDER BY
+  pct_renewable_energy DESC
